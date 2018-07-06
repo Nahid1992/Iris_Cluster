@@ -18,21 +18,20 @@ for i in range(1, 11):
     wcss.append(kmeans.inertia_)
 
 print(wcss)
-'''
+
 plt.plot(range(1, 11), wcss)
 plt.title('The elbow method')
 plt.xlabel('Group')
-plt.ylabel('WCSS') #within cluster sum of squares
-'''
+plt.ylabel('WCSS') 
+plt.show()
+
 kmeans = KMeans(n_clusters = 3, init = 'k-means++', max_iter = 300, n_init = 10, random_state = 0)
 y_kmeans = kmeans.fit_predict(x)
 
-#Visualising the clusters
-plt.scatter(x[y_kmeans == 0, 0], x[y_kmeans == 0, 1], s = 10, c = 'red', label = 'Class_1')
-plt.scatter(x[y_kmeans == 1, 0], x[y_kmeans == 1, 1], s = 10, c = 'blue', label = 'Class_2')
-plt.scatter(x[y_kmeans == 2, 0], x[y_kmeans == 2, 1], s = 10, c = 'green', label = 'Class_3')
+plt.scatter(x[y_kmeans == 0, 0], x[y_kmeans == 0, 1], s = 10, c = 'red', label = 'Class_1', marker='o')
+plt.scatter(x[y_kmeans == 1, 0], x[y_kmeans == 1, 1], s = 10, c = 'blue', label = 'Class_2', marker='o')
+plt.scatter(x[y_kmeans == 2, 0], x[y_kmeans == 2, 1], s = 10, c = 'green', label = 'Class_3', marker='o')
 
-#Plotting the centroids of the clusters
 plt.scatter(kmeans.cluster_centers_[:, 0], kmeans.cluster_centers_[:,1], s = 25, c = 'black', label = 'Centroide', marker = '*')
 
 plt.legend()
